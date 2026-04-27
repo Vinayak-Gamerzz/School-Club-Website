@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join Nova Club</title>
+
+  <style>
+    body {
+      background: #050505;
+      color: white;
+      font-family: Arial;
+      margin: 0;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5,5,5,0.95);
+      border-bottom: 1px solid rgba(0,255,200,0.2);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00ffc8;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #00ffc8;
+    }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      background: #00ffc8;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 30px;
+      background: #111;
+      display: none;
+      border-radius: 10px;
+      padding: 8px 0;
+    }
+
+    .dropdown-menu li {
+      list-style: none;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px;
+      color: #ccc;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* FORM */
+    .container {
+      padding-top: 120px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .box {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      width: 320px;
+      margin-top: 50px;
+    }
+
+    input, select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #1a1a1a;
+      border: none;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #00ffc8;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #msg {
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">NOVA CLUB</a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Wings ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+      </ul>
+    </li>
+
+    <li><a href="join.html" class="btn">Join</a></li>
+  </ul>
+</nav>
+
+<!-- FORM -->
+<div class="container">
+  <div class="box">
+
+    <h2>Join Nova Club</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <input type="text" id="class" placeholder="Class">
+    <input type="text" id="phone" placeholder="Phone">
+
+    <select id="skills">
+      <option value="">Select Interest</option>
+      <option>Web Development</option>
+      <option>App Development</option>
+      <option>Game Development</option>
+      <option>Robotics</option>
+    </select>
+
+    <button onclick="signup()">Join</button>
+
+    <p id="msg"></p>
+
+  </div>
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+    authDomain: "nova-club-vinayak.firebaseapp.com",
+    projectId: "nova-club-vinayak",
+    storageBucket: "nova-club-vinayak.firebasestorage.app",
+    messagingSenderId: "515398263626",
+    appId: "1:515398263626:web:f8e3515f9e7009278617b3",
+    measurementId: "G-KGRM4WJVVY"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const db = getFirestore();
+
+  window.signup = async function () {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const userClass = document.getElementById("class").value;
+    const phone = document.getElementById("phone").value;
+    const skills = document.getElementById("skills").value;
+    const msg = document.getElementById("msg");
+
+    if (!name || !email || !password || !userClass || !phone || !skills) {
+      msg.innerText = "Fill all fields ⚠️";
+      return;
+    }
+
+    try {
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+      await setDoc(doc(db, "members", userCred.user.uid), {
+        name,
+        email,
+        class: userClass,
+        phone,
+        skills,
+        role: "user"
+      });
+
+      msg.innerText = "Joined Successfully 🚀";
+
+    } catch (err) {
+      msg.innerText = err.message;
+    }
+  };
+</script>
+
+</body>
+</html>
