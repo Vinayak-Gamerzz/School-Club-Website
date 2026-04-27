@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1.0>
+        <title>Nova Club - Gagan Public School</title>
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <style>
+            body{
+                background: #050505;
+                color: #eaeaea;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .navbar {
+  backdrop-filter: blur(12px);
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+
+            /* HERO */
+
+            .hero {
+                padding-top: 140px;
+                text-align: center;
+                min-height: 100vh;
+                background: radial-gradient(circle at center, rgba(255,0,150,0.15), transparent 60%);
+            }
+
+            .hero h1 {
+                font-size: 70px;
+                margin-bottom: 25px;
+                background: linear-gradient(90deg,#00ffc8,#00aaff,#ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero p {
+                font-size: 18px;
+                max-width: 850px;
+                margin: 0 auto 30px;
+                line-height: 1.7;
+                color: #bbb;
+            }
+
+            .hero .highlight {
+                color: #67e8f9;
+                font-weight: 600;
+            }
+
+            .btn {
+                display: inline-block;
+                margin-top: 20px;
+                padding: 14px 32px;
+                background: linear-gradient(90deg, #00ffc8, #00aaff);
+                color: black;
+                font-weight: 600;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+
+            .hero-title {
+                font-size: 70px;
+                margin-bottom: 20px;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .btn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 25px rgba(0,255,200,0.6);
+            }
+
+            /* WINGS */
+            .wings {
+                padding: 100px 6%;
+            } 
+
+            .wings h2 {
+                text-align: center;
+                font-size: 36px;
+                margin-bottom: 60px;
+                background: linear-gradient(90deg, #00ffc8, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .wing-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+            }
+
+            .wing-card {
+                background: #111;
+                padding: 35px;
+                border-radius: 16px;
+                transition: 0.4s;
+                cursor:pointer;
+                border: 1px solid rgba(0,255,200,0.2);
+                text-align: center;
+            }
+
+            .wing-card:hover {
+                transform: scale(1.07);
+                box-shadow: 0 0 30px rgba(0,255,200,0.4);
+                background: #1a1a1a;
+            }
+
+            .wing-icon {
+                width: 70px;
+                margin-bottom: 15px;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0); }
+            }
+
+            .wing-card h3 {
+                color: #00ffc8;
+                margin-bottom: 15px;
+            }
+
+            .wing-card p {
+                color: #aaa;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">NOVA CLUB</a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <!-- DROPDOWN -->
+    <li class="dropdown">
+      <a href="#">Wings ▾</a>
+
+      <ul class="dropdown-menu">
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+      </ul>
+    </li>
+
+    <li><a href="join.html" class="btn">Join</a></li>
+  </ul>
+</nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1 class="hero-title">Where Ideas Become Reality</h1>
+
+            <p>
+                Welcome to <span class="highlight">Nova Club</span> - the official Hack Club at Gagan Public School.
+                We are a student-led community where we don't just learn technology, we build real projects.
+            </p>
+
+            <p>
+               From websites and apps to games and robotics, we turn creativity into reality.
+               Powered by Hack Club, we get access to global resources, workshops and opportunities. 
+            </p>
+
+            <p>
+                Whether you're a beginner or experienced, this is the place where you grow,build and innovate with like-minded creators.
+            </p>
+
+            <a href="join.html" class="btn">Enter the System</a>
+        </section>
+
+        <!-- WINGS -->
+        <section class="wings">
+            <h2>Our Wings</h2>
+
+            <div class="wing-grid">
+
+                <div class="wing-card" onclick="location.href='nexus-forge.html'">
+                    <img src="assets/images/nexus.png" class="wing-icon">
+                    <h3>Nexus Forge</h3>
+                    <p>Web development & full-stack applications</p>
+                </div>
+
+                <div class="wing-card" onclick="location.href='appocalypse.html'">
+                    <img src="assets/images/appocalypse.png" class="wing-icon">
+                    <h3>Appocalypse</h3>
+                    <p>App development & futuristic interfaces</p>
+                </div>
+
+                <div class="wing-card" onclick="location.href='arther-arena.html'">
+                    <img src="assets/images/arther-arena.png" class="wing-icon">
+                    <h3>Arther Arena</h3>
+                    <p>Game development & immersive experiences</p>
+                </div>
+
+                <div class="wing-card" onclick="location.href='helix-lab.html'">
+                    <img src="assets/images/robotics.png" class="wing-icon">
+                    <h3>Helix Lab</h3>
+                    <p>Robotics & hardware innovation</p>
+                </div>
+
+            </div>
+        </section>
+        </body>
+</html>
