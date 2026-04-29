@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard - Nova Club</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+:root{
+  --bg:#050505; --card:#0f0f0f; --muted:#a6a6a6;
+  --accent:#00ffc8; --accent2:#00aaff;
+}
+body{
+  margin:0; color:#fff; background:radial-gradient(1200px 600px at 10% -10%, #0b1f1a 0%, transparent 60%), var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  padding-top:80px;
+}
+
+/* NAVBAR spacing fix already via body padding */
+
+/* HEADER */
+.header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 40px 10px;
+}
+.title{
+  font-size:34px; font-weight:700;
+  background:linear-gradient(90deg,var(--accent),var(--accent2),#ff00cc);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+/* GRID */
+.layout{
+  display:grid; grid-template-columns:2fr 1fr; gap:28px; padding:24px 40px 40px;
+}
+
+/* CARD / BOX */
+.card, .box{
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px; padding:18px;
+  backdrop-filter: blur(10px);
+  transition:.25s ease;
+}
+.card:hover, .box:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,255,200,.12); }
+
+.section{ margin-bottom:26px; }
+.section h2{ margin:0 0 10px; color:var(--accent); font-size:18px; }
+
+/* PROJECT CARD */
+.pcard{
+  padding:14px; border-radius:14px; background:#141414; margin-bottom:10px;
+  border:1px solid #222;
+}
+.pcard h4{ margin:0 0 6px; font-size:15px; }
+.pcard p{ margin:0 0 8px; color:var(--muted); font-size:13px; }
+.pcard a{ color:var(--accent); text-decoration:none; font-size:13px; }
+
+/* ADD BTN */
+.add{
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#000; border:none; border-radius:999px;
+  padding:10px 16px; cursor:pointer; font-weight:600;
+}
+.hidden{ display:none; }
+
+/* FORM */
+.form input, .form select{
+  width:100%; margin-bottom:10px; padding:10px;
+  background:#121212; border:1px solid #222; color:#fff; border-radius:10px;
+}
+
+/* BADGES */
+.badges{ display:flex; flex-wrap:wrap; gap:10px; }
+.badge{
+  width:64px; height:64px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 30% 30%, var(--accent), var(--accent2));
+  color:#000; font-weight:700; font-size:12px;
+  box-shadow:0 0 18px rgba(0,255,200,.35);
+}
+
+/* SIDE */
+.stat{ font-size:13px; color:var(--muted); }
+.big{ font-size:20px; margin-top:4px; }
+
+/* QUICK PROFILE */
+.quick{
+  display:flex; align-items:center; gap:12px;
+}
+.quick img{ width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); }
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">NOVA CLUB</a>
+</nav>
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="header">
+  <div class="title" id="welcome">Welcome</div>
+  <button class="add" onclick="toggleForm()">➕ Add Project</button>
+</div>
+
+<div id="form" class="box form hidden" style="margin:0 40px 10px;">
+  <input id="pTitle" placeholder="Project Title">
+  <input id="pGithub" placeholder="GitHub Repo">
+  <input id="pDemo" placeholder="Live Demo (optional)">
+  <input id="pDesc" placeholder="Short Description">
+  <select id="pStatus">
+    <option value="current">Current</option>
+    <option value="completed">Completed</option>
+  </select>
+  <button class="add" onclick="submitProject()">Submit</button>
+</div>
+
+<div class="layout">
+
+  <!-- LEFT -->
+  <div>
+
+    <div class="section">
+      <h2>🟢 Current Projects</h2>
+      <div id="currentProjects" class="card"></div>
+    </div>
+
+    <div class="section">
+      <h2>🔵 Completed Projects</h2>
+      <div id="completedProjects" class="card"></div>
+    </div>
+
+    <div class="section">
+      <h2>🏅 Badges</h2>
+      <div id="badges" class="card badges"></div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div>
+
+    <div class="box">
+      <div class="stat">🔥 Streak</div>
+      <div class="big" id="streak"></div>
+    </div>
+
+    <div class="box">
+      <div class="stat">💬 Quote of the Hour</div>
+      <div class="big" id="quote"></div>
+    </div>
+
+    <div class="box">
+      <div class="stat">👤 You</div>
+      <div class="quick">
+        <img id="qAvatar" src="https://via.placeholder.com/60">
+        <div>
+          <div id="qName">User</div>
+          <button class="add" style="margin-top:6px" onclick="editProfile()">Open Profile</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+const auth=getAuth(app), db=getFirestore(app);
+
+window.toggleForm=()=>form.classList.toggle("hidden");
+
+window.submitProject=async()=>{
+  const u=auth.currentUser;
+  if(!pTitle.value || !pGithub.value) return alert("Fill required fields");
+  await addDoc(collection(db,"members",u.uid,"projects"),{
+    title:pTitle.value, github:pGithub.value, demo:pDemo.value,
+    desc:pDesc.value, status:pStatus.value
+  });
+  location.reload();
+};
+
+/* streak + quotes */
+const streakVal=parseInt(localStorage.getItem("streak")||"1");
+streak.innerText=streakVal+" days";
+const qs=["Discipline > Motivation","Build daily","Consistency wins","Ship fast","Focus & execute","Level up"];
+quote.innerText=qs[new Date().getHours()%qs.length];
+
+onAuthStateChanged(auth, async (user)=>{
+  if(!user) return location.href="login.html";
+
+  const us=await getDoc(doc(db,"members",user.uid));
+  const data=us.data()||{};
+  welcome.innerText="Welcome "+(data.name||"User");
+  qName.innerText=data.name||"User";
+  if(data.avatar) qAvatar.src=data.avatar;
+
+  currentProjects.innerHTML=""; completedProjects.innerHTML="";
+  const snap=await getDocs(collection(db,"members",user.uid,"projects"));
+
+  let count=0, done=0;
+  snap.forEach(d=>{
+    const p=d.data(); count++;
+    const el=document.createElement("div");
+    el.className="pcard";
+    el.innerHTML=`
+      <h4>${p.title}</h4>
+      <p>${p.desc||""}</p>
+      <a href="${p.github}" target="_blank">GitHub</a>
+      ${p.demo?` • <a href="${p.demo}" target="_blank">Demo</a>`:""}
+    `;
+    if(p.status==="current") currentProjects.appendChild(el);
+    else { done++; completedProjects.appendChild(el); }
+  });
+
+  /* badges */
+  let b=[];
+  if(count>=1) b.push("🚀");
+  if(count>=3) b.push("⚡");
+  if(done>=1) b.push("✅");
+  if(done>=3) b.push("🏆");
+  if(streakVal>=3) b.push("🔥");
+  if(data.hobby) b.push("🎯");
+
+  badges.innerHTML=b.map(x=>`<div class="badge">${x}</div>`).join("");
+});
+
+window.logout=async()=>{ await signOut(auth); location.href="index.html"; };
+window.editProfile=()=>location.href="profile.html";
+window.goBack=()=>location.href="index.html";
+</script>
+
+</body>
+</html>

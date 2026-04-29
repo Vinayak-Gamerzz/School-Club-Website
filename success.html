@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Success</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+  margin: 0;
+  background: #050505;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* ICON */
+.circle {
+  width: 100px;
+  height: 100px;
+  border: 3px solid #8a2be2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pop 0.6s ease;
+}
+
+.check {
+  font-size: 40px;
+  color: #8a2be2;
+}
+
+/* TEXT */
+h1 {
+  margin-top: 20px;
+  font-size: 40px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  color: #aaa;
+  margin-top: 10px;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border-radius: 25px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* ANIMATION */
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="circle">
+  <div class="check">✔</div>
+</div>
+
+<h1 id="title">Success 🎉</h1>
+<p id="desc">Redirecting...</p>
+
+<button class="btn" onclick="goDashboard()">Go to Dashboard</button>
+
+<script>
+let seconds = 3;
+
+const desc = document.getElementById("desc");
+
+setInterval(() => {
+  seconds--;
+  desc.innerText = "Redirecting to dashboard in " + seconds + "s";
+
+  if (seconds <= 0) {
+    window.location.href = "dashboard.html";
+  }
+}, 1000);
+
+function goDashboard() {
+  window.location.href = "dashboard.html";
+}
+
+/* 🔥 CUSTOM TEXT FROM LOGIN/JOIN */
+const type = localStorage.getItem("type");
+
+if (type === "login") {
+  document.getElementById("title").innerText = "Login Successful 👋";
+} else if (type === "join") {
+  document.getElementById("title").innerText = "Joined Successfully 🎉";
+}
+</script>
+
+<script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

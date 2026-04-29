@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Nova Club</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+  background: #050505;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+}
+
+/* CENTER BOX */
+.container {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 6px;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(90deg,#00ffc8,#00aaff);
+  border: none;
+  font-weight: bold;
+  color: black;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,255,200,0.5);
+}
+
+#msg {
+  text-align: center;
+  margin-top: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">NOVA CLUB</a>
+</nav>
+
+<!-- LOGIN FORM -->
+<div class="container">
+  <div class="box">
+
+    <h2>Login</h2>
+
+    <form id="loginForm">
+
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+
+      <button type="submit">Login</button>
+
+    </form>
+
+    <p id="msg"></p>
+
+  </div>
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain: "nova-club-vinayak.firebaseapp.com",
+  projectId: "nova-club-vinayak",
+  storageBucket: "nova-club-vinayak.firebasestorage.app",
+  messagingSenderId: "515398263626",
+  appId: "1:515398263626:web:bbf69430e0f960f48617b3"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+
+/* 🔥 ADD THIS */
+localStorage.setItem("type", "login");
+window.location.href = "success.html";
+
+    document.getElementById("msg").innerText = "Login Successful 🚀";
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
+
+  } catch (error) {
+    document.getElementById("msg").innerText = error.message;
+  }
+});
+
+</script>
+
+<script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

@@ -4,90 +4,30 @@
   <meta charset="UTF-8">
   <title>Join Nova Club</title>
 
+  <link rel="stylesheet" href="css/style.css">
+
   <style>
     body {
       background: #050505;
       color: white;
-      font-family: Arial;
+      font-family: 'Nunito', sans-serif;
       margin: 0;
     }
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 15px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(5,5,5,0.95);
-      border-bottom: 1px solid rgba(0,255,200,0.2);
-      z-index: 1000;
-    }
+    select[multiple] {
+  height: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: white;
+  cursor: pointer;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #00ffc8;
-      text-decoration: none;
-    }
+select[multiple] option {
+  padding: 8px;
+}
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 18px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      color: #ccc;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #00ffc8;
-    }
-
-    .btn {
-      padding: 8px 18px;
-      border-radius: 20px;
-      background: #00ffc8;
-      color: black;
-      font-weight: bold;
-    }
-
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 30px;
-      background: #111;
-      display: none;
-      border-radius: 10px;
-      padding: 8px 0;
-    }
-
-    .dropdown-menu li {
-      list-style: none;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 10px;
-      color: #ccc;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      display: block;
-    }
-
-    /* FORM */
     .container {
       padding-top: 120px;
       display: flex;
@@ -104,20 +44,33 @@
 
     input, select {
       width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       padding: 10px;
       background: #1a1a1a;
-      border: none;
+      border: 1px solid #333;
       color: white;
+      border-radius: 6px;
+    }
+
+    select[multiple] {
+      height: 120px;
     }
 
     button {
       width: 100%;
       padding: 10px;
-      background: #00ffc8;
+      background: linear-gradient(90deg,#00ffc8,#00aaff);
       border: none;
       cursor: pointer;
       font-weight: bold;
+      color: black;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,255,200,0.5);
     }
 
     #msg {
@@ -131,6 +84,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
+
   <a href="index.html" class="logo">NOVA CLUB</a>
 
   <ul class="nav-links">
@@ -141,8 +95,10 @@
     <li><a href="founders.html">Founders</a></li>
     <li><a href="gallery.html">Gallery</a></li>
 
+    <!-- DROPDOWN -->
     <li class="dropdown">
-      <a href="#">Wings ▾</a>
+      <a href="#">Skill Arenas ▾</a>
+
       <ul class="dropdown-menu">
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
@@ -151,9 +107,26 @@
       </ul>
     </li>
 
-    <li><a href="join.html" class="btn">Join</a></li>
+    <!-- 🔒 LOGIN KE BAAD -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- AFTER LOGIN -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
   </ul>
+
 </nav>
+
+<!-- BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
 
 <!-- FORM -->
 <div class="container">
@@ -161,21 +134,44 @@
 
     <h2>Join Nova Club</h2>
 
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <input type="text" id="class" placeholder="Class">
-    <input type="text" id="phone" placeholder="Phone">
+    <form id="joinForm">
 
-    <select id="skills">
-      <option value="">Select Interest</option>
-      <option>Web Development</option>
-      <option>App Development</option>
-      <option>Game Development</option>
-      <option>Robotics</option>
-    </select>
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <input type="text" id="class" placeholder="Class" required>
+  <input type="text" id="phone" placeholder="Phone" required>
 
-    <button onclick="signup()">Join</button>
+  <!-- 🔥 MULTI SELECT -->
+<p class="skills-title">Choose Your Skills</p>
+
+<div class="skills-box">
+
+  <label class="skill-card">
+    <input type="checkbox" value="web">
+    <span>💻 Web Development</span>
+  </label>
+
+  <label class="skill-card">
+    <input type="checkbox" value="app">
+    <span>📱 App Development</span>
+  </label>
+
+  <label class="skill-card">
+    <input type="checkbox" value="game">
+    <span>🎮 Game Development</span>
+  </label>
+
+  <label class="skill-card">
+    <input type="checkbox" value="robotics">
+    <span>🤖 Robotics</span>
+  </label>
+
+</div>
+
+  <button type="submit">Join</button>
+
+</form>
 
     <p id="msg"></p>
 
@@ -184,57 +180,64 @@
 
 <!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
-    authDomain: "nova-club-vinayak.firebaseapp.com",
-    projectId: "nova-club-vinayak",
-    storageBucket: "nova-club-vinayak.firebasestorage.app",
-    messagingSenderId: "515398263626",
-    appId: "1:515398263626:web:f8e3515f9e7009278617b3",
-    measurementId: "G-KGRM4WJVVY"
-  };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
-  const db = getFirestore();
+const firebaseConfig = {
+  apiKey: "AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain: "nova-club-vinayak.firebaseapp.com",
+  projectId: "nova-club-vinayak",
+  storageBucket: "nova-club-vinayak.firebasestorage.app",
+  messagingSenderId: "515398263626",
+  appId: "1:515398263626:web:bbf69430e0f960f48617b3",
+  measurementId: "G-4HTH6SLMTG"
+};
 
-  window.signup = async function () {
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const userClass = document.getElementById("class").value;
-    const phone = document.getElementById("phone").value;
-    const skills = document.getElementById("skills").value;
-    const msg = document.getElementById("msg");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-    if (!name || !email || !password || !userClass || !phone || !skills) {
-      msg.innerText = "Fill all fields ⚠️";
-      return;
-    }
+const form = document.getElementById("joinForm");
 
-    try {
-      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-      await setDoc(doc(db, "members", userCred.user.uid), {
-        name,
-        email,
-        class: userClass,
-        phone,
-        skills,
-        role: "user"
-      });
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const className = document.getElementById("class").value;
+  const phone = document.getElementById("phone").value;
 
-      msg.innerText = "Joined Successfully 🚀";
+  /* 🔥 MULTI SKILLS */
+  const skillOptions = document.getElementById("skills");
+ const skills = Array.from(document.querySelectorAll(".skills-box input:checked"))
+  .map(el => el.value);
 
-    } catch (err) {
-      msg.innerText = err.message;
-    }
-  };
+try {
+  const userCred = await createUserWithEmailAndPassword(auth, email, password);
+
+  await setDoc(doc(db, "members", userCred.user.uid), {
+    name,
+    email,
+    className,
+    phone,
+    skills
+  });
+
+  /* 🔥 YE ADD KAR (IMPORTANT) */
+  localStorage.setItem("type", "join");
+  window.location.href = "success.html";
+
+} catch (error) {
+  document.getElementById("msg").innerText = error.message;
+}
+});
+
 </script>
+
+<script type="module" src="js/auth.js"></script>
 
 </body>
 </html>

@@ -6,6 +6,7 @@
         <title>Nova Club - Gagan Public School</title>
 
         <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 
         <style>
             body{
@@ -16,6 +17,57 @@
 
             .navbar {
   backdrop-filter: blur(12px);
+}
+
+/* FONT CHANGE */
+/* BODY */
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #eaeaea;
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+/* HERO TITLE (main heading) */
+.hero-title {
+  font-size: 70px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg,#00ffc8,#00aaff,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* SECTION HEADINGS */
+h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(0,255,200,0.5);
+}
+
+/* SUBTEXT */
+p {
+  color: #aaa;
+  font-size: 15px;
+}
+
+/* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
 }
 
 /* NAV LINK UNDERLINE EFFECT */
@@ -245,13 +297,50 @@
                 color: #aaa;
                 font-size: 14px;
             }
+
+            /* BUTTONS */
+            /* PRIMARY BUTTON (Login) */
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 25px;
+  background: linear-gradient(90deg,#00ffc8,#00aaff);
+  color: black;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0,255,200,0.6);
+}
+
+/* SECONDARY BUTTON (Join) */
+.btn-secondary {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: 1px solid #00ffc8;
+  color: #00ffc8;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #00ffc8;
+  color: black;
+}
         </style>
     </head>
 
     <body>
 
-        <!-- NAVBAR -->
+<!-- NAVBAR -->
+
 <nav class="navbar">
+
   <a href="index.html" class="logo">NOVA CLUB</a>
 
   <ul class="nav-links">
@@ -264,7 +353,7 @@
 
     <!-- DROPDOWN -->
     <li class="dropdown">
-      <a href="#">Wings ▾</a>
+      <a href="#">Skill Arenas ▾</a>
 
       <ul class="dropdown-menu">
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
@@ -274,10 +363,26 @@
       </ul>
     </li>
 
-    <li><a href="join.html" class="btn">Join</a></li>
+    <!-- 🔒 LOGIN KE BAAD -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- AFTER LOGIN -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
   </ul>
+
 </nav>
 
+<!-- BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
         <!-- HERO -->
         <section class="hero">
             <h1 class="hero-title">Where Ideas Become Reality</h1>
@@ -301,7 +406,7 @@
 
         <!-- WINGS -->
         <section class="wings">
-            <h2>Our Wings</h2>
+            <h2>Skill Arenas</h2>
 
             <div class="wing-grid">
 
@@ -319,7 +424,7 @@
 
                 <div class="wing-card" onclick="location.href='arther-arena.html'">
                     <img src="assets/images/arther-arena.png" class="wing-icon">
-                    <h3>Arther Arena</h3>
+                    <h3>Aether Arena</h3>
                     <p>Game development & immersive experiences</p>
                 </div>
 
@@ -331,5 +436,8 @@
 
             </div>
         </section>
+        
+        <script type="module" src="js/auth.js"></script>
+
         </body>
 </html>
