@@ -2,182 +2,417 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard - Nova Club</title>
+<title>Dashboard - Elyra Club</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+
+/* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+
 body{
-  background:#050505;
-  color:white;
   margin:0;
-  font-family:'Inter',sans-serif;
+  font-family: 'Inter', sans-serif;
+  background:#050505;
+  color:#fff;
   padding-top:80px;
 }
 
 /* HEADER */
 .header{
-  padding:30px 40px 10px;
-}
-
-.welcome-text{
-  font-size:36px;
-  margin-bottom:20px;
+  padding:20px 40px;
+  font-size:28px;
+  font-weight:700;
   background:linear-gradient(90deg,#00ffc8,#00aaff,#ff00cc);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-}
-
-/* BUTTON */
-.add{
-  padding:10px 20px;
-  border-radius:25px;
-  background:linear-gradient(90deg,#00ffc8,#00aaff);
-  color:black;
-  cursor:pointer;
-  border:none;
-}
-
-/* BACK BUTTON FIX */
-.back-btn{
-  position:static;
-  margin:20px 40px;
 }
 
 /* LAYOUT */
 .layout{
   display:grid;
   grid-template-columns:2fr 1fr;
-  gap:30px;
-  padding:30px 40px;
+  gap:25px;
+  padding:20px 40px;
 }
 
-/* BOX */
+/* CARDS */
 .card{
   background:#111;
-  padding:18px;
-  border-radius:14px;
-  margin-top:10px;
+  border:1px solid #222;
+  border-radius:16px;
+  padding:20px;
 }
 
 /* PROJECT CARD */
 .pcard{
-  background:#1a1a1a;
+  background:#141414;
   padding:12px;
   border-radius:10px;
   margin-bottom:10px;
+  cursor:pointer;
+}
+.pcard:hover{
+  background:#1a1a1a;
 }
 
 /* BADGES */
 .badges{
   display:flex;
+  gap:10px;
   flex-wrap:wrap;
 }
-
 .badge{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  display:flex;
+  background:linear-gradient(90deg,#00ffc8,#00aaff);
+  color:#000;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:12px;
+}
+
+/* SIDE */
+.box{
+  background:#111;
+  border:1px solid #222;
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:15px;
+}
+
+.project-chip {
+  padding: 10px 20px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.project-chip:hover {
+  background: #2b2b2b;
+  transform: scale(1.05);
+}
+
+.completed-chip {
+  background: rgba(0, 150, 255, 0.15);
+  border: 1px solid #4cc9ff;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
   align-items:center;
   justify-content:center;
-  margin:6px;
-  background:radial-gradient(circle,#00ffc8,#00aaff);
-  color:black;
 }
 
-/* FORM */
-.hidden{ display:none; }
+.modal-box{
+  background:#111;
+  padding:25px;
+  border-radius:14px;
+  width:350px;
+  border:1px solid #333;
+}
 
-input, select{
+.modal-box button{
   width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.open{ background:#6c7cff; color:#fff;}
+.complete{ background:#333; color:#fff;}
+.remove{ background:#111; color:#fff; border:1px solid #555;}
+
+/* POPUP CONTENT */
+.modal-box h2{
   margin-bottom:10px;
+  font-size:22px;
+}
+
+.modal-box p{
+  margin:6px 0;
+  color:#ccc;
+  line-height:1.5;
+}
+
+/* INFO BLOCK */
+.project-info{
+  margin-top:10px;
   padding:10px;
   background:#1a1a1a;
-  border:none;
-  color:white;
-  border-radius:8px;
+  border-radius:10px;
 }
-</style>
 
+.project-info p{
+  margin:4px 0;
+}
+
+/* BUTTONS SPACING */
+.modal-box button{
+  margin-top:12px;
+  padding:10px;
+  border-radius:20px;
+}
+
+/* BUTTON COLORS */
+.open{ background:#00ffc8; color:#000;}
+.complete{ background:#222; color:#fff;}
+.remove{ background:#111; border:1px solid #555; color:#fff;}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+</style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html" class="logo">
-  <img src="assets/images/elyra-logo.png" class="logo-img">
-  <span class="logo-text">ELYRA</span>
-</a>
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <li id="joinBtn"><a href="join.html">Join</a></li>
+    <li id="loginBtn"><a href="login.html">Login</a></li>
+    <li id="logoutBtn" style="display:none;"><a href="#">Logout</a></li>
+  </ul>
+
 </nav>
 
-<button class="back-btn" onclick="goBack()">← Back</button>
+<div id="currentProjects"></div>
 
-<div class="header">
-  <h1 id="welcome" class="welcome-text">Welcome</h1>
-
-  <button class="add" onclick="toggleForm()">➕ Add Project</button>
-</div>
-
-<!-- FORM -->
-<div id="form" class="card hidden" style="margin:0 40px;">
-  <input id="pTitle" placeholder="Project Title">
-  <input id="pGithub" placeholder="GitHub Repo">
-  <input id="pDemo" placeholder="Live Demo">
-  <input id="pDesc" placeholder="Description">
-
-  <select id="pStatus">
-    <option value="current">Current</option>
-    <option value="completed">Completed</option>
-  </select>
-
-  <button class="add" onclick="submitProject()">Submit</button>
-</div>
+<h1>Welcome, <span id="username"></span> 🚀</h1>
 
 <div class="layout">
 
-<!-- LEFT -->
-<div>
+  <!-- LEFT -->
+  <div>
 
-  <h2>🟢 Current Projects</h2>
-  <div id="currentProjects" class="card"></div>
 
-  <h2>🔵 Completed Projects</h2>
-  <div id="completedProjects" class="card"></div>
 
-  <h2>🏅 Badges</h2>
-  <div id="badges" class="card badges"></div>
+    <div class="card">
+      
+      <h3>🟢 Current Projects</h3>
+      <div id="projects"></div>
+      <div id="current"></div>
+    </div>
+
+    <div class="card">
+      <h3>🔵 Completed Projects</h3>
+      <div id="completed"></div>
+    </div>
+
+    <div class="card">
+      <h3>🏆 Badges</h3>
+      <div id="badges" class="badges"></div>
+    </div>
+
+
+  </div>
+
+  <!-- RIGHT -->
+  <div>
+
+    <div class="box">
+      <h4>🔥 Streak</h4>
+      <div id="streak"></div>
+    </div>
+
+    <div class="box">
+      <h4>💬 Quote</h4>
+      <div id="quote"></div>
+    </div>
+
+    <button onclick="location.href='profile'">
+      Edit Profile
+    </button>
+
+    <div id="profileModal" class="modal"></div>
+
+  </div>
 
 </div>
 
-<!-- RIGHT -->
-<div>
-
-  <div class="card">
-    <h3>🔥 Streak</h3>
-    <p id="streak"></p>
-  </div>
-
-  <div class="card">
-    <h3>💬 Quote</h3>
-    <p id="quote"></p>
-  </div>
-
-  <div class="card">
-    <h3>👤 You</h3>
-    <p id="qName"></p>
-    <button class="add" onclick="editProfile()">Open Profile</button>
-  </div>
-
-</div>
-
-</div>
+<!-- MODAL -->
+<div id="modal" class="modal"></div>
 
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const app = initializeApp({
   apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
@@ -185,89 +420,192 @@ const app = initializeApp({
   projectId:"nova-club-vinayak"
 });
 
-const auth=getAuth(app);
-const db=getFirestore(app);
+const auth = getAuth(app);
 
-/* TOGGLE */
-window.toggleForm = ()=>form.classList.toggle("hidden");
+const modal = document.getElementById("modal");
 
-/* ADD PROJECT */
-window.submitProject = async()=>{
-  const user=auth.currentUser;
+/* 🔥 GLOBAL DATA (FIXED KEY) */
+let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
 
-  await addDoc(collection(db,"members",user.uid,"projects"),{
-    title:pTitle.value,
-    github:pGithub.value,
-    demo:pDemo.value,
-    desc:pDesc.value,
-    status:pStatus.value
+/* 🔥 AUTH */
+onAuthStateChanged(auth, (user) => {
+
+  if(user){
+    dashboardLink.style.display="block";
+    logoutBtn.style.display="block";
+    joinBtn.style.display="none";
+    loginBtn.style.display="none";
+
+    const profile = JSON.parse(localStorage.getItem("elyra_profile"));
+
+if(profile && profile.username){
+  document.getElementById("username").innerText = profile.username;
+} else {
+  document.getElementById("username").innerText = "User";
+}
+
+      
+
+    render();
+  } else {
+    location.href="login.html";
+  }
+
+});
+
+/* 🔥 LOGOUT */
+logoutBtn.onclick = async ()=>{
+  await signOut(auth);
+  location.href="index.html";
+};
+
+/* 🔥 MAIN RENDER */
+function render(){
+
+  projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+
+  current.innerHTML="";
+  completed.innerHTML="";
+
+  projects.forEach((p,i)=>{
+
+    let el = document.createElement("div");
+    el.className="pcard";
+    el.innerHTML = `<b>${p.name}</b><br>${p.desc || ""}`;
+
+    el.onclick = ()=>openPopup(i);
+
+    if(p.completed){
+      completed.appendChild(el);
+    } else {
+      current.appendChild(el);
+    }
+
   });
 
-  location.reload();
+  loadBadges();
+}
+
+/* 🔥 POPUP (FIXED) */
+window.openPopup = function(i){
+
+  const projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+  const p = projects[i];
+
+  if(!p) return;
+
+  modal.style.display="flex";
+
+  modal.innerHTML = `
+    <div class="modal-box">
+      <h2>${p.name}</h2>
+      <p>${p.desc || ""}</p>
+
+      <p><b>Difficulty:</b> ${p.difficulty || "-"}</p>
+      <p><b>Time:</b> ${p.time || "-"}</p>
+      <p><b>Rewards:</b> ${p.reward || "-"}</p>
+
+      <button class="open" onclick="window.open('${p.link}', '_blank')">
+        Open Project
+      </button>
+
+      ${!p.completed ? `
+      <button class="complete" 
+      onclick="complete(${i})">
+        Mark as Completed
+      </button>`:"<p>✅ Completed</p>"}
+
+      <button class="remove" onclick="removeP(${i})">
+        Remove Project
+      </button>
+    </div>
+  `;
 };
 
-/* STREAK */
-const streakVal = parseInt(localStorage.getItem("streak")||"1");
+/* 🔥 CLOSE POPUP */
+modal.onclick = (e)=>{
+  if(e.target.id === "modal"){
+    modal.style.display = "none";
+  }
+};
+
+/* 🔥 COMPLETE */
+window.complete = function(i){
+
+  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+
+  // 🔥 अगर already completed है → कुछ मत कर
+  if(projects[i].completed){
+    return;
+  }
+
+  // mark complete
+  projects[i].completed = true;
+
+  let badges = JSON.parse(localStorage.getItem("elyraBadges")) || [];
+
+  const badgeText = "🏆 Completed: " + projects[i].name;
+
+  // 🔥 duplicate badge रोक
+  if(!badges.includes(badgeText)){
+    badges.push(badgeText);
+  }
+
+  localStorage.setItem("elyraBadges", JSON.stringify(badges));
+  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+
+  render();
+};
+
+/* 🔥 REMOVE */
+window.removeP = function(i){
+
+  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+
+  projects.splice(i,1);
+
+  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+
+  render();
+};
+
+/* 🔥 BADGES */
+function loadBadges(){
+
+  let b = JSON.parse(localStorage.getItem("elyraBadges")) || [];
+
+  badges.innerHTML = b.map(x=>`<div class="badge">${x}</div>`).join("");
+}
+
+/* 🔥 STREAK */
+let streakVal = parseInt(localStorage.getItem("streak")||"1");
 streak.innerText = streakVal + " days";
 
-/* QUOTE */
-const quotes=["Consistency wins","Stay disciplined","Build daily","Focus up","Keep improving"];
+/* 🔥 QUOTE */
+const quotes = ["Build daily","Consistency wins","Ship fast","Level up"];
 quote.innerText = quotes[new Date().getHours()%quotes.length];
 
-/* MAIN */
-onAuthStateChanged(auth, async(user)=>{
-
-if(!user) return location.href="login.html";
-
-const snapUser = await getDoc(doc(db,"members",user.uid));
-const data = snapUser.data() || {};
-
-welcome.innerText = "Welcome " + (data.name || "User") + " 👋";
-qName.innerText = data.name || "User";
-
-/* PROJECTS */
-const snap = await getDocs(collection(db,"members",user.uid,"projects"));
-
-let count=0, completed=0;
-
-snap.forEach(d=>{
-const p=d.data();
-count++;
-
-const div=document.createElement("div");
-div.className="pcard";
-div.innerHTML=`${p.title}<br><a href="${p.github}" target="_blank">GitHub</a>`;
-
-if(p.status==="current"){
-currentProjects.appendChild(div);
-}else{
-completed++;
-completedProjects.appendChild(div);
-}
-});
-
-/* BADGES */
-let badgesArr=[];
-
-if(count>=1) badgesArr.push("🚀");
-if(count>=3) badgesArr.push("⚡");
-if(completed>=1) badgesArr.push("✅");
-if(streakVal>=3) badgesArr.push("🔥");
-
-badges.innerHTML = badgesArr.map(b=>`<div class="badge">${b}</div>`).join("");
-
-});
-
-/* NAV */
-window.logout = async()=>{
-await signOut(auth);
-location.href="index.html";
-};
-
-window.editProfile = ()=>location.href="profile.html";
-window.goBack = ()=>location.href="index.html";
-
 </script>
+
+
+<!-- POPUP -->
+<div id="popup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+
+  <div id="popupContent" style="background:#111; padding:20px; border-radius:12px; width:300px;">
+    <h3 id="pName"></h3>
+    <p id="pDesc"></p>
+    <p id="pDiff"></p>
+    <p id="pTime"></p>
+    <p id="pReward"></p>
+
+    <button id="openBtn">Open</button>
+    <button id="completeBtn">Complete</button>
+    <button id="removeBtn">Remove</button>
+    <br><br>
+    <button onclick="closePopup()">Close</button>
+  </div>
+
+</div>
 
 </body>
 </html>

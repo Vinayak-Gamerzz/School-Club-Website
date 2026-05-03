@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery - Elyra</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+  /* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+            
+.back-btn {
+  color: #00ffc8;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  margin-top:10px;
+}
+
+.hero h1{
+  font-family:'Orbitron';
+  font-size:42px;
+  background:linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  color:#aaa;
+}
+
+/* ===== GALLERY GRID ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:30px;
+  padding:40px 6%;
+}
+
+@media(max-width:768px){
+  .gallery{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===== IMAGE CARD ===== */
+.gallery-item{
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+}
+
+.gallery-text{
+  position:absolute;
+  bottom:0;
+  left: 0;
+  width:100%;
+  padding:12px;
+  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  font-size:14px;
+  text-align:center;
+  transition:0.3s;
+  color: #fff;
+  z-index:2;
+}
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.4s;
+}
+
+/* hover zoom */
+.gallery-item:hover img{
+  transform:scale(1.08);
+}
+
+/* glow border */
+.gallery-item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(0,255,200,0.2);
+  border-radius:14px;
+  pointer-events:none;
+}
+
+.gallery-item:hover{
+  box-shadow:0 0 25px rgba(0,255,200,0.25);
+}
+
+#lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+#lightbox img{
+  max-width:85%;
+  max-height:80%;
+  border-radius:12px;
+}
+
+#lightbox-text{
+  margin-top:15px;
+  color:#ccc;
+}
+
+#close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Gallery</h1>
+  <p>Moments, Builds & Memories 📸</p>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery">
+
+  <!-- 🔥 IMAGE 1 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img1.jpeg">
+
+    <div class="gallery-text">
+      Website In Making!! Yayy
+    </div>
+  </div>
+
+  <!-- 🔥 IMAGE 2 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img2.jpg">
+  </div>
+
+  <!-- 🔥 IMAGE 3 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img3.jpg">
+  </div>
+
+  <!-- 🔥 IMAGE 4 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img4.jpg">
+  </div>
+
+  <!-- 🔥 IMAGE 5 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img5.jpg">
+  </div>
+
+  <!-- 🔥 IMAGE 6 -->
+  <div class="gallery-item">
+    <img src="assets/gallery/img6.jpg">
+  </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<script>
+function goBack(){ location.href="index.html"; }
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+
+const auth = getAuth(app);
+
+// 🔥 NAVBAR CONTROL
+onAuthStateChanged(auth, (user) => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const joinBtn = document.getElementById("joinBtn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if(user){
+    if(loginBtn) loginBtn.style.display="none";
+    if(joinBtn) joinBtn.style.display="none";
+    if(dashboardLink) dashboardLink.style.display="block";
+    if(logoutBtn) logoutBtn.style.display="block";
+  } else {
+    if(loginBtn) loginBtn.style.display="block";
+    if(joinBtn) joinBtn.style.display="block";
+    if(dashboardLink) dashboardLink.style.display="none";
+    if(logoutBtn) logoutBtn.style.display="none";
+  }
+});
+
+// 🔥 LOGOUT
+const logoutBtn = document.getElementById("logoutBtn");
+if(logoutBtn){
+  logoutBtn.onclick = async ()=>{
+    await signOut(auth);
+    location.reload();
+  };
+}
+</script>
+
+
+<div id="lightbox">
+  <span id="close">&times;</span>
+  <img id="lightbox-img">
+  <p id="lightbox-text"></p>
+</div>
+
+<script>
+const items = document.querySelectorAll(".gallery-item");
+const lightbox = document.getElementById("lightbox");
+const img = document.getElementById("lightbox-img");
+const text = document.getElementById("lightbox-text");
+
+items.forEach(item=>{
+  item.onclick = ()=>{
+    img.src = item.querySelector("img").src;
+    text.innerText = item.querySelector(".gallery-text").innerText;
+    lightbox.style.display="flex";
+  }
+});
+
+document.getElementById("close").onclick = ()=>{
+  lightbox.style.display="none";
+};
+
+lightbox.onclick = (e)=>{
+  if(e.target===lightbox){
+    lightbox.style.display="none";
+  }
+};
+</script>
+
+</body>
+
+</html>

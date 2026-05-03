@@ -2,11 +2,438 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Profile - Nova Club</title>
+<title>Profile - Elyra Club</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+
+/* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
+    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
+    rgba(0,0,0,0.6);
+
+  z-index: -1;
+}
+
+@keyframes move1 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(200px,150px); }
+}
+
+@keyframes move2 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-150px,-200px); }
+}
+
+
+@keyframes particlesMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-300px,-300px); }
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.back-btn {
+  color: #00ffc8;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p {
+  color: #aaa;
+  font-size: 16px;
+}
+
+/* DESCRIPTION */
+.desc {
+  max-width: 950px;
+  margin: 30px auto;
+  margin-bottom: 100px;
+  background: #111 solid;
+  padding: 25px;
+  border-radius: 12px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.6;
+  border: 1px solid #222;
+}
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* GRID */
+.grid {
+  margin-top: 20px;
+  gap: 25px;
+}
+
+.card {
+  text-align: center;
+  padding: 25px;
+  font-size: 28px;
+background: #111 !important;
+  border: 1px solid #222;
+}
+
+.card h3 {
+  margin-top: 15px;   /* logo → heading gap */
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-top: 10px;    /* heading → desc gap */
+}
+
+/* CARD TEXT */
+.card p {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.floating-logo {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 120px;
+  opacity: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
+    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 25px rgba(138,43,226,0.3);
+}
+
+/* LOCK BAR */
+.lock-bar {
+  margin-top: 50px;
+  padding: 15px;
+  border-radius: 30px;
+  text-align: center;
+  background: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.4);
+  color: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+
+.main-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.notice-item {
+  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
+  border: 1px solid rgba(138,43,226,0.2);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;   /* 🔥 proper spacing */
+}
+
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+/* 🔥 LIVE BADGE */
+.badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#63e08a;
+  color:#000;
+  font-size:10px;   /* pehle bada tha */
+  padding:4px 8px;  /* small */
+  border-radius:999px;
+  font-weight:600;
+  width: 30px;
+  height: 30px;
+}
+
+.badge-card {
+  box-shadow: 0 0 20px rgba(0,255,150,0.3);
+}
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.view-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border: none;
+
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #081420, #03060d);
+  z-index: -1;
+  filter: blur(0.5px);
+}
+
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #000000;
+}
+
+/* optional dark overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(190, 20, 20, 0.4);
+  z-index: -1;
+}
 
 body{
   background:#050505;
@@ -86,55 +513,114 @@ body{
 
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html" class="logo">NOVA CLUB</a>
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
 </nav>
 
 <button class="back-btn" onclick="goBack()">← Back</button>
 
 <div class="container">
+  <div class="hero">
 
-  <div class="profile-card">
+<h2>Edit Profile</h2>
 
-    <img id="avatar" class="avatar" src="https://via.placeholder.com/120">
+<input id="username" placeholder="Username">
+<input id="fullname" placeholder="Full Name">
+<input id="phone" placeholder="Phone Number">
+<input id="email" placeholder="Email">
+<input id="dob" type="date">
+<input id="age" placeholder="Age">
 
-    <h2 id="name">User</h2>
-    <p id="username">@username</p>
+<h3>Fun Section 😎</h3>
 
-    <div class="info">
-      <p><b>Bio:</b> <span id="bio"></span></p>
-      <p><b>Hobby:</b> <span id="hobby"></span></p>
-      <p><b>Fav Food:</b> <span id="food"></span></p>
-      <p><b>Goals:</b> <span id="goal"></span></p>
-      <p><b>Skills:</b> <span id="skills"></span></p>
-    </div>
+<input id="food" placeholder="Favorite Food">
+<input id="skill" placeholder="Favorite Skill">
+<input id="sport" placeholder="Favorite Sport">
+<input id="hobby" placeholder="Hobby">
 
-    <button class="btn" onclick="openModal()">Edit Profile</button>
+<button onclick="saveProfile()">Save Profile</button>
 
-  </div>
+<button onclick="goBack()">⬅ Back to Dashboard</button>
 
 </div>
-
-<!-- MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-box">
-
-    <h3>Edit Profile</h3>
-
-    <input id="eName" placeholder="Name">
-    <input id="eUsername" placeholder="Username">
-    <input id="eBio" placeholder="Bio">
-    <input id="eHobby" placeholder="Hobby">
-    <input id="eFood" placeholder="Fav Food">
-    <input id="eGoal" placeholder="Goals">
-    <input id="eSkills" placeholder="Skills (comma separated)">
-    <input id="eAvatar" type="file">
-
-    <button onclick="saveProfile()">Save</button>
-    <button onclick="closeModal()">Cancel</button>
-
-  </div>
 </div>
+<script>
+
+// 🔥 LOAD OLD DATA
+const data = JSON.parse(localStorage.getItem("elyra_profile")) || {};
+
+for(let key in data){
+  if(document.getElementById(key)){
+    document.getElementById(key).value = data[key];
+  }
+}
+
+// 🔥 SAVE
+function saveProfile(){
+
+  const profile = {
+    username: document.getElementById("username").value,
+    fullname: document.getElementById("fullname").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    dob: document.getElementById("dob").value,
+    age: document.getElementById("age").value,
+    food: document.getElementById("food").value,
+    skill: document.getElementById("skill").value,
+    sport: document.getElementById("sport").value,
+    hobby: document.getElementById("hobby").value
+  };
+
+  localStorage.setItem("elyra_profile", JSON.stringify(profile));
+
+  alert("Profile Saved ✅");
+}
+
+// 🔥 BACK
+function goBack(){
+  location.href="dashboard.html";
+}
+
+</script>
+
 
 <script type="module">
 

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nexus Forge - Elyra</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
+    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
+    rgba(0,0,0,0.6);
+
+  z-index: -1;
+}
+
+@keyframes move1 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(200px,150px); }
+}
+
+@keyframes move2 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-150px,-200px); }
+}
+
+
+@keyframes particlesMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-300px,-300px); }
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  margin-top: 0px;
+}
+
+.back-btn {
+  color: #00ffc8;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p {
+  color: #aaa;
+  font-size: 16px;
+}
+
+/* DESCRIPTION */
+.desc {
+  max-width: 950px;
+  margin: 30px auto;
+  margin-bottom: 100px;
+  background: #111 solid;
+  padding: 25px;
+  border-radius: 12px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.6;
+  border: 1px solid #222;
+}
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* GRID */
+.grid {
+  margin-top: 20px;
+  gap: 25px;
+}
+
+.card {
+  text-align: center;
+  padding: 25px;
+  font-size: 28px;
+background: #111 !important;
+  border: 1px solid #222;
+}
+
+.card h3 {
+  margin-top: 15px;   /* logo → heading gap */
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-top: 10px;    /* heading → desc gap */
+}
+
+/* CARD TEXT */
+.card p {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.floating-logo {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 120px;
+  opacity: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
+    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 25px rgba(138,43,226,0.3);
+}
+
+/* LOCK BAR */
+.lock-bar {
+  margin-top: 50px;
+  padding: 15px;
+  border-radius: 30px;
+  text-align: center;
+  background: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.4);
+  color: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+
+.main-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.notice-item {
+  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
+  border: 1px solid rgba(138,43,226,0.2);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;   /* 🔥 proper spacing */
+}
+
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+/* 🔥 LIVE BADGE */
+.badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#63e08a;
+  color:#000;
+  font-size:10px;   /* pehle bada tha */
+  padding:4px 8px;  /* small */
+  border-radius:999px;
+  font-weight:600;
+  width: 30px;
+  height: 30px;
+}
+
+.badge-card {
+  box-shadow: 0 0 20px rgba(0,255,150,0.3);
+}
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.view-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border: none;
+
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #081420, #03060d);
+  z-index: -1;
+  filter: blur(0.5px);
+}
+
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #000000;
+}
+
+/* optional dark overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(190, 20, 20, 0.4);
+  z-index: -1;
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="b"></canvas>
+<canvas id="matrix"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+<img src="assets/images/nexus.png" class="floating-logo">
+
+<!-- BACK -->
+<button class="back-btn" onclick="location.href='index.html'">← Back</button>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Nexus Forge</h1>
+  <p>Build Powerful Websites, interactive experiences & real-world web application.</p>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="desc">
+  Nexus Forge is the web development powerhouse of Elyra where ideas are transformed into fully functional digital experiences. 
+  This is where members move beyond basic coding and start building real websites, platforms, and interactive systems. 
+  
+  From crafting modern UI/UX designs to developing scalable backend systems, API integrations, and performance optimization, Nexus Forge covers everything needed to create production-ready web applications.
+  
+  Whether you're building your first website or launching advanced full-stack projects, this space gives you the tools, mentorship, and hands-on experience to grow as a developer and creator.
+</div>
+
+<!-- SECTION -->
+<h2 class="section-title">🚀 What You'll Work On</h2>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card">
+      🌐
+      <h3>Frontend Development</h3>
+      <p>
+        Design responsive, and visualyy appealing interfaces using modern tools.
+        Crete Smooth, user-friendly web experiences that feel clean and interactive.
+      </p>
+    </div>
+
+    <div class="card">
+      ⚙️
+      <h3>Backend Development </h3>
+      <p>
+        Build API's and manage data flow between users and servers efficiently.
+        Handle authentication, databases, and server-side logic for real applications.
+      </p>
+    </div>
+
+    <div class="card">
+      🔗
+      <h3>Full Stack Development</h3>
+      <p>
+        Combine frontend and backend to build complete working applications.
+        Develop systems that are functional, scalable, and ready to be deployed.
+      </p>
+    </div>
+
+    <div class="card">
+      🧠
+      <h3>Real-World Project Building</h3>
+      <p>
+        Work on real projects instead of just learning theory.
+        Build, test, inmprove and ship applications like real developers do.
+      </p>
+    </div>
+
+    <div class="card">
+      🎨
+      <h3>UI/UX Design</h3>
+      <p>
+        Design Clean layouts that focus on user experience and usability.
+        Improve how users interact with your apps throught better design thinking.
+      </p>
+    </div>
+
+    <div class="card">
+      🚀
+      <h3>Deployment & Hosting</h3>
+      <p>
+        Deploy your projects online so others can access them globally.
+        Learn how to optimize performance and maintain live applications.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="main-card">
+  <h2>📢 Notice Board</h2>
+
+  <div class="notice-item">
+    <h3>Workshop: Arduino Robotics Fundamentals</h3>
+    <p>Learn the basics of building autonomous robots. This Saturday at 3 PM.</p>
+  </div>
+
+  <div class="notice-item">
+    <h3>Project Showcase Next Month</h3>
+    <p>Register before end of this week.</p>
+  </div>
+</div>
+
+  <div class="main-card">
+  <h2>🔥 Projects</h2>
+
+  <div class="grid">
+
+   <div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Vibes</h3>
+  <p>Build a website using AI to help with code! Focus on all the other aspects of webdev and experiment with preexisting code.</p>
+  <p>Difficulty: Beginner</p>
+  <p>Time: 1-2 hour</p>
+  <p>Rewards: Club Pizza Party!!</p>
+  <p></p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:50%"></div>
+  </div>
+
+  <a href="https://vibes.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'vibes',
+  name: 'Vibes',           
+  desc: 'Build a website using AI to help with code! Focus on all the other aspects of webdev and experiment with preexisting code.',
+  difficulty: 'Beginner',
+  time: '1-2 hour',
+  reward: 'Club Pizza Party!!',
+  link: 'https://vibes.hackclub.com',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+    <div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Boba Drops</h3>
+  <p>Build a fun, interactive personal website using html and CSS</p>
+  <p>Difficulty: Beginner</p>
+  <p>Time: 2-3 Hours</p>
+  <p>Rewards: Club Boba Party!!</p>
+  <p> </p>
+      <p></p>
+      <p></p>
+      <p></p>
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://boba.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({
+  id: 'boba-drops',
+  name: 'Boba Drops',
+  desc: 'Build a fun, interactive personal website using html and CSS',
+  difficulty: 'Beginner',
+  time: '2-3 Hours',
+  reward: 'Club Boba Party!!',
+  link: 'https://boba.hackclub.com'
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Swirl</h3>
+  <p>Build a cooler website with HTML and CSS, with a unique feature like a favicon</p>
+  <p>Difficulty: Beginner</p>
+  <p>Time: 2-3 Hours</p>
+  <p>Rewards: Club Ice Cream Party!!</p>
+  <p></p>
+  <p></p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://swirl.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'swirl',
+  name: 'Swirl',
+  desc: 'Build a cooler website with HTML and CSS, with a unique feature like a favicon',
+  difficulty: 'Beginner',
+  time: '2-3 Hours',
+  reward: 'Club Ice Cream Party!!',
+  link: 'https://swirl.hackclub.com',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Horizons</h3>
+  <p>Develop a Website as you want how you want.</p>
+  <p>Difficulty: Advanced</p>
+  <p>Time: Cannot Specify</p>
+  <p>Rewards: Get Anything you want from hours of your work - Grants, Products, Recognization</p>
+  <p></p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://horizons.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'nexus-horizons',
+  name: 'Horizons',                
+  desc: 'Develop a Website as you want how you want.',
+  difficulty: 'Advanced',
+  time: 'Cannot Specify',
+  reward: 'Get Anything you want from hours of your work - Grants, Products, Recognization',
+  link: 'https://horizons.hackclub.com',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Macondo</h3>
+  <p>Build Fascinating Websites.</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: Cannot Specify</p>
+  <p>Rewards: Grants, Product, Anything!</p>
+  <p> </p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://macondo.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'nexus-macondo',
+  name: 'Macondo',                
+  desc: 'Build Fascinating Websites.',
+  difficulty: 'Intermediate',
+  time: 'Cannot Specify',
+  reward: 'Grants, Product, Anything!',
+  link: 'https://macondo.hackclub.com',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Waffles</h3>
+  <p>Make a Website which is built with JS (JavaScript)</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: 3–4 Hours</p>
+  <p>Rewards: Club Waffle Party!!</p>
+  <p> </p>
+      <p></p>
+      <p></p>
+      <p> </p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://waffles.hackclub.com" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'waffles',
+  name: 'Waffles',      
+  desc: 'Make a Website which is built with JS (JavaScript)',
+  difficulty: 'Intermediate',
+  time: '3–4 Hours',
+  reward: 'Club Waffle Party!!',          
+  link: 'https://waffles.hackclub.com',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+
+const auth = getAuth(app);
+
+// 🔥 NAVBAR CONTROL
+onAuthStateChanged(auth, (user) => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const joinBtn = document.getElementById("joinBtn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if(user){
+    if(loginBtn) loginBtn.style.display="none";
+    if(joinBtn) joinBtn.style.display="none";
+    if(dashboardLink) dashboardLink.style.display="block";
+    if(logoutBtn) logoutBtn.style.display="block";
+  } else {
+    if(loginBtn) loginBtn.style.display="block";
+    if(joinBtn) joinBtn.style.display="block";
+    if(dashboardLink) dashboardLink.style.display="none";
+    if(logoutBtn) logoutBtn.style.display="none";
+  }
+});
+
+// 🔥 LOGOUT
+const logoutBtn = document.getElementById("logoutBtn");
+if(logoutBtn){
+  logoutBtn.onclick = async ()=>{
+    await signOut(auth);
+    location.reload();
+  };
+}
+
+// ==========================
+// 🔥 HIGH DENSITY BACKGROUND
+// ==========================
+
+const canvas = document.getElementById("bg");
+const ct = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const COUNT = 110; // 🔥 increased particles
+
+class Particle {
+  constructor(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+  }
+
+  move(){
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 0.8, 0, Math.PI*2);
+    ctx.fillStyle = "rgba(0,255,255,0.6)";
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<COUNT;i++){
+  particles.push(new Particle());
+}
+
+function connect(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+
+      let dx = particles[i].x - particles[j].x;
+      let dy = particles[i].y - particles[j].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+
+      if(dist < 120){ // 🔥 increased connection range
+
+        // bright lines
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(0,255,255,0.7)";
+        ctx.lineWidth = 1.5;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+
+        // mesh triangles
+        for(let k=j+1;k<particles.length;k++){
+          let dx2 = particles[j].x - particles[k].x;
+          let dy2 = particles[j].y - particles[k].y;
+          let d2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+
+          if(d2 < 180){
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(0,255,255,0.1)";
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineTo(particles[k].x, particles[k].y);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+
+      }
+    }
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    p.move();
+    p.draw();
+  });
+
+  connect();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize", ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+</script>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+// characters
+const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+// drops
+const drops = [];
+for (let i = 0; i < columns; i++) {
+  drops[i] = 1;
+}
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.07)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ffc8"; // neon color
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.875) {
+      drops[i] = 0;
+    }
+
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 100);
+
+// resize fix
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
+<script>
+function addToDashboard(project, btn){
+
+  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+
+  if(projects.some(p => p.id === project.id)){
+    btn.innerText = "Added ✔";
+    btn.disabled = true;
+    return;
+  }
+
+  projects.push(project);
+
+  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+
+  btn.innerText = "Added ✔";
+  btn.disabled = true;
+}
+</script>
+
+</body>
+</html>

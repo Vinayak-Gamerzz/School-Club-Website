@@ -3,19 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width", initial-scale=1.0>
-        <title>Elyra - Gagan Public School</title>
+        <title>Elyra - Public School</title>
 
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 
         <style>
-            body{
-                background: #050505;
-                color: #eaeaea;
-                font-family: 'Inter', sans-serif;
-            }
+            
+            
+            
+body{
+  background: #050505;
+   color: #eaeaea;
+  font-family: 'Inter', sans-serif;
+}
 
-            .navbar {
+.navbar {
   backdrop-filter: blur(12px);
 }
 
@@ -57,37 +60,12 @@ p {
   font-size: 15px;
 }
 
-/* NAVBAR FONT */
-.nav-links a {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 500;
-}
 
 /* BUTTON TEXT */
 .btn-primary,
 .btn-secondary {
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1px;
-}
-
-/* NAV LINK UNDERLINE EFFECT */
-.nav-links a {
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background: #00ffc8;
-  transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
 }
 
 /* DROPDOWN */
@@ -145,54 +123,89 @@ p {
   transform: translateX(5px);
 }
 
-            /* NAVBAR */
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                padding: 18px 6%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: rgba(5,5,5,0.9);
-                background-filter: blur(10px);
-                border-bottom: 1px solid rgba(0,255,200,0.2);
-                z-index: 1000;
-            }
+  .navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  position:fixed;
+}
 
-            .logo {
-                font-size: 22px;
-                font-weight: 700;
-                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-decoration: none;
-            }
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 
-            .nav-links {
-                list-style: none;
-                display: flex;
-                gap: 20px;
-            }
+.logo-img{
+  width:32px;
+}
 
-            .nav-links a {
-                color: #ccc;
-                text-decoration: none;
-                font-size: 14px;
-                transition: 0.3s;
-            }
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-            .nav-links a:hover {
-                color: #00ffc8;
-            }
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+  position:relative;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#00f5d4,#9b5cff);
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* BUTTONS */
+.btn-outline{
+  border:1px solid #00f5d4;
+  padding:6px 14px;
+  border-radius:20px;
+}
+
+.btn-fill{
+  background:linear-gradient(90deg,#00f5d4,#9b5cff);
+  padding:6px 16px;
+  border-radius:20px;
+  color:black !important;
+  font-weight:500;
+}
 
             /* HERO */
 
             .hero {
-                padding-top: 140px;
+                padding-top: 0px;
                 text-align: center;
                 min-height: 100vh;
                 background: radial-gradient(circle at center, rgba(255,0,150,0.15), transparent 60%);
+                margin-bottom: 0px;
             }
 
             .hero h1 {
@@ -225,6 +238,7 @@ p {
                 font-weight: 600;
                 text-decoration: none;
                 transition: 0.3s;
+                margin-bottom: 0px;
             }
 
             .hero-title {
@@ -243,6 +257,7 @@ p {
             /* WINGS */
             .wings {
                 padding: 100px 6%;
+                margin-top: 0px;
             } 
 
             .wings h2 {
@@ -338,35 +353,31 @@ p {
     <body>
 
 <!-- NAVBAR -->
-
 <nav class="navbar">
 
-  <a href="index.html" class="logo">
-  <img src="assets/images/elyra-logo.png" class="logo-img">
-<span class="logo-text">ELYRA</span>
-</a>
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
 
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="founders.html">Founders</a></li>
     <li><a href="gallery.html">Gallery</a></li>
 
-    <!-- DROPDOWN -->
     <li class="dropdown">
       <a href="#">Skill Arenas ▾</a>
-
       <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
         <li><a href="aether-arena.html">Aether Arena</a></li>
-        <li><a href="helix-lab.html">Helix Lab</a></li>
       </ul>
     </li>
 
-    <!-- 🔒 LOGIN KE BAAD -->
+    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
@@ -375,17 +386,16 @@ p {
     <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
     <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
 
-    <!-- AFTER LOGIN -->
+    <!-- LOGOUT -->
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
-
 </nav>
 
-<!-- BACK BUTTON -->
-<button class="back-btn" onclick="goBack()">← Back</button>
+<div class="container"></div>
+
         <!-- HERO -->
         <section class="hero">
             <h1 class="hero-title">Where Ideas Become Reality</h1>
@@ -425,7 +435,7 @@ p {
                     <p>App development & futuristic interfaces</p>
                 </div>
 
-                <div class="wing-card" onclick="location.href='arther-arena.html'">
+                <div class="wing-card" onclick="location.href='aether-arena.html'">
                     <img src="assets/images/arther-arena.png" class="wing-icon">
                     <h3>Aether Arena</h3>
                     <p>Game development & immersive experiences</p>
@@ -441,6 +451,49 @@ p {
         </section>
         
         <script type="module" src="js/auth.js"></script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+
+const auth = getAuth(app);
+
+// 🔥 NAVBAR CONTROL
+onAuthStateChanged(auth, (user) => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const joinBtn = document.getElementById("joinBtn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if(user){
+    if(loginBtn) loginBtn.style.display="none";
+    if(joinBtn) joinBtn.style.display="none";
+    if(dashboardLink) dashboardLink.style.display="block";
+    if(logoutBtn) logoutBtn.style.display="block";
+  } else {
+    if(loginBtn) loginBtn.style.display="block";
+    if(joinBtn) joinBtn.style.display="block";
+    if(dashboardLink) dashboardLink.style.display="none";
+    if(logoutBtn) logoutBtn.style.display="none";
+  }
+});
+
+// 🔥 LOGOUT
+const logoutBtn = document.getElementById("logoutBtn");
+if(logoutBtn){
+  logoutBtn.onclick = async ()=>{
+    await signOut(auth);
+    location.reload();
+  };
+}
+</script>
 
         </body>
 </html>

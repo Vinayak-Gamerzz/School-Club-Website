@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Join Nova Club</title>
+  <title>Join Elyra</title>
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -77,6 +77,25 @@ select[multiple] option {
       margin-top: 10px;
       text-align: center;
     }
+
+    .logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
   </style>
 </head>
 
@@ -85,32 +104,29 @@ select[multiple] option {
 <!-- NAVBAR -->
 <nav class="navbar">
 
-  <a href="index.html" class="logo">
-  <img src="assets/images/elyra-logo.png" class="logo-img">
-  <span class="logo-text">ELYRA</span>
-</a>
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
 
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
-    <li><a href="projects.html">Projects</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="team.html">Team</a></li>
     <li><a href="founders.html">Founders</a></li>
     <li><a href="gallery.html">Gallery</a></li>
 
-    <!-- DROPDOWN -->
     <li class="dropdown">
       <a href="#">Skill Arenas ▾</a>
-
       <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
         <li><a href="nexus-forge.html">Nexus Forge</a></li>
         <li><a href="appocalypse.html">Appocalypse</a></li>
         <li><a href="aether-arena.html">Aether Arena</a></li>
-        <li><a href="helix-lab.html">Helix Lab</a></li>
       </ul>
     </li>
 
-    <!-- 🔒 LOGIN KE BAAD -->
+    <!-- AFTER LOGIN -->
     <li id="dashboardLink" style="display:none;">
       <a href="dashboard.html">Dashboard</a>
     </li>
@@ -119,14 +135,14 @@ select[multiple] option {
     <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
     <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
 
-    <!-- AFTER LOGIN -->
+    <!-- LOGOUT -->
     <li id="logoutBtn" style="display:none;">
       <a href="#">Logout</a>
     </li>
 
   </ul>
-
 </nav>
+
 
 <!-- BACK BUTTON -->
 <button class="back-btn" onclick="goBack()">← Back</button>
@@ -135,7 +151,7 @@ select[multiple] option {
 <div class="container">
   <div class="box">
 
-    <h2>Join Elyra Club</h2>
+    <h2>Join Elyra</h2>
 
     <form id="joinForm">
 

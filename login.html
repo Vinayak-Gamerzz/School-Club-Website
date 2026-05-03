@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Login - Nova Club</title>
+<title>Login - Elyra</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -61,6 +61,25 @@ button:hover {
   text-align: center;
   margin-top: 10px;
 }
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
 </style>
 
 </head>
@@ -69,10 +88,44 @@ button:hover {
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <a href="index.html" class="logo">
-  <img src="assets/images/elyra-logo.png" class="logo-img">
-  <span class="logo-text">ELYRA</span>
-</a>
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
 </nav>
 
 <!-- LOGIN FORM -->
@@ -97,6 +150,8 @@ button:hover {
 
 <!-- FIREBASE -->
 <script type="module">
+
+localStorage.setItem("elyraUser", "true");
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
@@ -126,6 +181,7 @@ form.addEventListener("submit", async (e) => {
 
 /* 🔥 ADD THIS */
 localStorage.setItem("type", "login");
+localStorage.setItem("elyraUser", "true");
 window.location.href = "success.html";
 
     document.getElementById("msg").innerText = "Login Successful 🚀";
@@ -138,6 +194,7 @@ window.location.href = "success.html";
     document.getElementById("msg").innerText = error.message;
   }
 });
+
 
 </script>
 

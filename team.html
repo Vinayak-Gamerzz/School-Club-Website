@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Team - Elyra</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+  /* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+            
+.back-btn {
+  color: #00ffc8;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{
+  width:32px;
+}
+
+.logo-text{
+  font-size:20px;
+  font-weight:600;
+  background: linear-gradient(90deg,#00f5d4,#9b5cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* ===== BODY ===== */
+body{
+  margin:0;
+  font-family:'Nunito';
+  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000);
+  color:white;
+}
+
+
+/* ===== HERO ===== */
+.hero{
+  text-align:center;
+  margin-top:120px;
+}
+.hero h1{
+  font-family:'Orbitron';
+  font-size:42px;
+  background:linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== SPOTLIGHT (Founder Section) ===== */
+.spotlight{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:40px 6%;
+}
+
+.spot-card{
+  width:260px;
+  padding:25px;
+  border-radius:18px;
+  text-align:center;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(0,255,200,0.3);
+  box-shadow:0 0 30px rgba(0,255,200,0.2);
+}
+
+.spot-card img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #00ffc8;
+}
+
+.spot-card h3{
+  margin-top:15px;
+  font-family:'Orbitron';
+}
+
+.role{
+  color:#00ffc8;
+  font-size:14px;
+}
+
+/* ===== GRID ===== */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  padding:40px 6%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media(max-width:768px){
+  .team-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===== FLIP CARD ===== */
+.flip-card{
+  perspective:1000px;
+}
+
+.flip-inner{
+  position:relative;
+  width:100%;
+  height:260px;
+  transition:transform 0.6s;
+  transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-inner{
+  transform:rotateY(180deg);
+}
+
+.flip-front, .flip-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+}
+
+.flip-front{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.flip-front img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  margin-top:10px;
+}
+
+.flip-front h3{
+  margin-top:10px;
+  font-family:'Orbitron';
+}
+
+/* BACK */
+.flip-back{
+  background:linear-gradient(135deg,#8a2be2,#00ffc8);
+  color:black;
+  transform:rotateY(180deg);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* SOCIAL */
+.social a{
+  margin:0 8px;
+  color:black;
+  font-size:18px;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+<h1>Our Team</h1>
+</div>
+
+<!-- 👑 SPOTLIGHT -->
+<div class="spotlight">
+
+<div class="spot-card">
+<img src="assets/team/vinayak.jpeg">
+<h3>Vinayak</h3>
+<div class="role">Founder</div>
+<p>Vision & execution of Elyra.</p>
+</div>
+
+<div class="spot-card">
+<img src="assets/team/harshita.jpeg">
+<h3>Harshita</h3>
+<div class="role">Co-Founder</div>
+<p>Operations & creativity lead.</p>
+</div>
+
+</div>
+
+<!-- ⚙️ ARCHITECTS -->
+<div class="team-grid">
+
+<!-- TECH -->
+<div class="flip-card">
+<div class="flip-inner">
+
+<div class="flip-front">
+<img src="assets/team/hardware.jpg">
+<h3>Name</h3>
+<p>Tech Architect</p>
+<p>Head Of Helix Lab</p>
+</div>
+
+<div class="flip-back">
+<p>Builds hardware systems & prototypes.</p>
+
+<div class="social">
+<i class="fab fa-instagram"></i>
+<i class="fab fa-github"></i>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- WEB -->
+<div class="flip-card">
+<div class="flip-inner">
+
+<div class="flip-front">
+<img src="assets/team/web.jpg">
+<h3>Name</h3>
+<p>Web Architect</p>
+<p>Head Of Nexus Forge</p>
+</div>
+
+<div class="flip-back">
+<p>Creates Elyra web experiences.</p>
+</div>
+
+</div>
+</div>
+
+<!-- APP -->
+<div class="flip-card">
+<div class="flip-inner">
+
+<div class="flip-front">
+<img src="assets/team/app.jpg">
+<h3>Name</h3>
+<p>App Architect</p>
+<p>Head Of Appocalypse</p>
+</div>
+
+<div class="flip-back">
+<p>Builds scalable mobile apps.</p>
+</div>
+
+</div>
+</div>
+
+<!-- GAME -->
+<div class="flip-card">
+<div class="flip-inner">
+
+<div class="flip-front">
+<img src="assets/team/game.jpg">
+<h3>Name</h3>
+<p>Game Architect</p>
+<p>Head Of Aether Arena</p>
+</div>
+
+<div class="flip-back">
+<p>Designs immersive games.</p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+function goBack(){ location.href="index.html"; }
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+
+const auth = getAuth(app);
+
+// 🔥 NAVBAR CONTROL
+onAuthStateChanged(auth, (user) => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const joinBtn = document.getElementById("joinBtn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if(user){
+    if(loginBtn) loginBtn.style.display="none";
+    if(joinBtn) joinBtn.style.display="none";
+    if(dashboardLink) dashboardLink.style.display="block";
+    if(logoutBtn) logoutBtn.style.display="block";
+  } else {
+    if(loginBtn) loginBtn.style.display="block";
+    if(joinBtn) joinBtn.style.display="block";
+    if(dashboardLink) dashboardLink.style.display="none";
+    if(logoutBtn) logoutBtn.style.display="none";
+  }
+});
+
+// 🔥 LOGOUT
+const logoutBtn = document.getElementById("logoutBtn");
+if(logoutBtn){
+  logoutBtn.onclick = async ()=>{
+    await signOut(auth);
+    location.reload();
+  };
+}
+</script>
+
+</body>
+</html>

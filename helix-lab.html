@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Helix Lab - Elyra</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* NAVBAR FONT */
+.nav-links a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+}
+
+/* BUTTON TEXT */
+.btn-primary,
+.btn-secondary {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* NAV LINK UNDERLINE EFFECT */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00ffc8;
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 0;
+  display: none;
+  min-width: 180px;
+  border: 1px solid rgba(0,255,200,0.2);
+  box-shadow: 0 0 20px rgba(0,255,200,0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT INSIDE DROPDOWN */
+.dropdown-menu a:hover {
+  background: rgba(0,255,200,0.1);
+  color: #00ffc8;
+  transform: translateX(5px);
+}
+
+            /* NAVBAR */
+            .navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                padding: 18px 6%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: rgba(5,5,5,0.9);
+                background-filter: blur(10px);
+                border-bottom: 1px solid rgba(0,255,200,0.2);
+                z-index: 1000;
+            }
+
+            .logo {
+                font-size: 22px;
+                font-weight: 700;
+                background: linear-gradient(90deg, #00ffc8, #00aaff, #ff00cc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-decoration: none;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 14px;
+                transition: 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #00ffc8;
+            }
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.8), transparent),
+    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.9), transparent),
+    rgba(0,0,0,0.6);
+
+  z-index: -1;
+}
+
+@keyframes move1 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(200px,150px); }
+}
+
+@keyframes move2 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-150px,-200px); }
+}
+
+.particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particles::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+
+  background:
+    radial-gradient(circle, #8a2be2 2px, transparent 2px),
+    radial-gradient(circle, #00ffc8 2px, transparent 2px);
+
+  background-size: 80px 80px, 120px 120px;
+
+  animation: particlesMove 35s linear infinite;
+
+  opacity: 0.8;
+}
+
+@keyframes particlesMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-300px,-300px); }
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  margin-top: 120px;
+}
+
+.back-btn {
+  color: #00ffc8;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.hero p {
+  color: #aaa;
+  font-size: 16px;
+}
+
+/* DESCRIPTION */
+.desc {
+  max-width: 950px;
+  margin: 30px auto;
+  margin-bottom: 100px;
+  background: #111 solid;
+  padding: 25px;
+  border-radius: 12px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.6;
+  border: 1px solid #222;
+}
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  background: linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* GRID */
+.grid {
+  margin-top: 20px;
+  gap: 25px;
+}
+
+.card {
+  text-align: center;
+  padding: 25px;
+  font-size: 28px;
+background: #111 !important;
+  border: 1px solid #222;
+}
+
+.card h3 {
+  margin-top: 15px;   /* logo → heading gap */
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-top: 10px;    /* heading → desc gap */
+}
+
+/* CARD TEXT */
+.card p {
+  margin-top: 10px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.floating-logo {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 120px;
+  opacity: 1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000000);
+  background-image: 
+    radial-gradient(circle at 80% 20%, rgba(138,43,226,0.15), transparent),
+    radial-gradient(circle at 20% 80%, rgba(0,255,200,0.1), transparent);
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 25px rgba(138,43,226,0.3);
+}
+
+/* LOCK BAR */
+.lock-bar {
+  margin-top: 50px;
+  padding: 15px;
+  border-radius: 30px;
+  text-align: center;
+  background: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.4);
+  color: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+
+
+.main-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.notice-item {
+  background: rgba(138,43,226,0.08);  /* 🔥 purple tint */
+  border: 1px solid rgba(138,43,226,0.2);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;   /* 🔥 proper spacing */
+}
+
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+/* 🔥 LIVE BADGE */
+.badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#63e08a;
+  color:#000;
+  font-size:10px;   /* pehle bada tha */
+  padding:4px 8px;  /* small */
+  border-radius:999px;
+  font-weight:600;
+  width: 30px;
+  height: 30px;
+}
+
+.badge-card {
+  box-shadow: 0 0 20px rgba(0,255,150,0.3);
+}
+
+/* 🔥 PROGRESS BAR */
+.progress {
+  height: 6px;
+  background: #222;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border-radius: 10px;
+}
+
+.view-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 25px;
+
+  background: linear-gradient(90deg,#8a2be2,#00ffc8);
+  border: none;
+
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="particles"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+<img src="assets/images/robotics.png" class="floating-logo">
+
+<!-- BACK -->
+<button class="back-btn" onclick="location.href='index.html'">← Back</button>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Helix Lab</h1>
+  <p>Advanced Robotics, Automation & Hardware Innovation</p>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="desc">
+  Helix Lab is the experimental core of Elyra where ideas turn into real machines.  
+  This is where members step beyond theory and start building actual working systems.
+
+  From designing mechanical structures to programming smart controllers, Helix Lab focuses on hands-on learning.  
+  You don’t just learn how things work — you create them yourself.
+
+  Whether it's automation, intelligent devices, or custom builds, this space is for those who want to engineer the future.
+</div>
+
+<!-- SECTION -->
+<h2 class="section-title">🚀 What You'll Work On</h2>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card">
+      ⚙️
+      <h3>Mechanical Builds</h3>
+      <p>
+        Create physical systems using gears, structures, and moving parts.  
+        Learn how real machines are designed and built from scratch.
+      </p>
+    </div>
+
+    <div class="card">
+      🔋
+      <h3>Hardware Systems</h3>
+      <p>
+        Work with circuits, sensors, and electrical components.  
+        Build systems that interact with the real world.
+      </p>
+    </div>
+
+    <div class="card">
+      🧠
+      <h3>Smart Controllers</h3>
+      <p>
+        Program microcontrollers like Arduino and ESP boards.  
+        Turn ideas into working automated systems.
+      </p>
+    </div>
+
+    <div class="card">
+      👁️
+      <h3>Intelligent Machines</h3>
+      <p>
+        Build systems that can see, detect, and respond.  
+        Explore AI-powered robotics and automation.
+      </p>
+    </div>
+
+    <div class="card">
+      🏁
+      <h3>Build Challenges</h3>
+      <p>
+        Take part in internal builds and competitions.  
+        Test your skills and improve through real challenges.
+      </p>
+    </div>
+
+    <div class="card">
+      🧪
+      <h3>Innovation Zone</h3>
+      <p>
+        Experiment with new ideas and technologies.  
+        Work on unique projects beyond basics.
+      </p>
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="container">
+
+  <div class="main-card">
+  <h2>📢 Notice Board</h2>
+
+  <div class="notice-item">
+    <h3>Workshop: Arduino Robotics Fundamentals</h3>
+    <p>Learn the basics of building autonomous robots. This Saturday at 3 PM.</p>
+  </div>
+
+  <div class="notice-item">
+    <h3>Project Showcase Next Month</h3>
+    <p>Register before end of this week.</p>
+  </div>
+</div>
+
+  <div class="main-card">
+  <h2>🔥 Projects</h2>
+
+  <div class="grid">
+
+   <div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Blinky Board</h3>
+  <p>Design hardware projects and get support for real builds.</p>
+  <p>Difficulty: Beginner</p>
+  <p>Time: 1-2 hours</p>
+  <p>Rewards: Hands-on PCB Experience</p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:70%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/blinky" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'blinky',
+  name: 'Blinky Board',           
+  desc: 'Design hardware projects and get support for real builds',
+  difficulty: 'Beginner',
+  time: '1-2 hours',
+  reward: 'Hands-on PCB Experience',     
+  link: 'https://blueprint.hackclub.com/starter-projects/blinky',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+    <div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>RP2040 Devboard</h3>
+  <p>Design your own RP2040 board.</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: 6-10 hours</p>
+  <p>Rewards: Professionaly manufactured PCB</p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/devboard" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({
+  id: 'rp2040',
+  name: 'RP2040 Devboard',
+  desc: 'Design your own RP2040 board',
+  difficulty: 'Intermediate',
+  time: '6-10 hours',
+  reward: 'Professionally manufactured PCB',
+  link: 'https://blueprint.hackclub.com/starter-projects/devboard'
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Flight Controller</h3>
+  <p>Design your own Flight Controller.</p>
+  <p>Difficulty: Advanced</p>
+  <p>Time: 10-15 hours</p>
+  <p>Rewards: Drone-Ready controller design</p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/flightcontroller" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'flight-controller',
+  name: 'Flight Controller',
+  desc: 'Design your own Flight Controller',
+  difficulty: 'Advanced',
+  time: '10-15 hours',
+  reward: 'Drone-Ready controller design',                
+  link: 'https://blueprint.hackclub.com/starter-projects/flightcontroller',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Mini Midi Magic</h3>
+  <p>Design your own Mini Midi Magic.</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: 8–10 hours</p>
+  <p>Rewards: Custom mechanical keyboard</p>
+
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/midi" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'mini-midi-magic',
+  name: 'Mini Midi Magic',                
+  desc: 'Design your own Mini Midi Magic',
+  difficulty: 'Intermediate',
+  time: '8–10 hours',
+  reward: 'Custom mechanical keyboard',
+  link: 'https://blueprint.hackclub.com/starter-projects/midi',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Split Keyboard</h3>
+  <p>Design your own Split Keyboard.</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: 7–9 hours</p>
+  <p>Rewards: Custom split keyboard<
+    <p></p>
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/split-keyboard" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({ 
+  id: 'split-keyboard',
+  name: 'Split Keyboard',                
+  desc: 'Design your own Split Keyboard',
+  difficulty: 'Intermediate',
+  time: '7–9 hours',
+  reward: 'Custom split keyboard',
+  link: 'https://blueprint.hackclub.com/starter-projects/split-keyboard',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+<div class="project-card">
+  <span class="badge">LIVE</span>
+
+  <h3>Custom Mouse</h3>
+  <p>Design your own Custom Mouse.</p>
+  <p>Difficulty: Intermediate</p>
+  <p>Time: 8–10 hours</p>
+  <p>Rewards: Custom Mouse</p>
+  <p></p>
+  <div class="progress">
+    <div class="progress-bar" style="width:65%"></div>
+  </div>
+
+  <a href="https://blueprint.hackclub.com/starter-projects/squeak" target="_blank">
+    <button class="view-btn">View Program</button>
+  </a>
+
+  <button onclick="addToDashboard({
+  id: 'custom-mouse',
+  name: 'Custom Mouse',      
+  desc: 'Design your own Custom Mouse',
+  difficulty: 'Intermediate',
+  time: '8–10 hours',
+  reward: 'Custom Mouse',          
+  link: 'https://blueprint.hackclub.com/starter-projects/squeak',
+}, this)">
+Add to Dashboard
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+const app = initializeApp({
+  apiKey:"AIzaSyDi1ND91tW2RP23926SoY6j9GX9vKGCSOQ",
+  authDomain:"nova-club-vinayak.firebaseapp.com",
+  projectId:"nova-club-vinayak"
+});
+
+const auth = getAuth(app);
+
+// 🔥 SINGLE AUTH CONTROL (NAVBAR + LOCK BOTH)
+onAuthStateChanged(auth, (user) => {
+
+  const loginBtn = document.getElementById("loginBtn");
+  const joinBtn = document.getElementById("joinBtn");
+  const dashboardLink = document.getElementById("dashboardLink");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  const lock = document.getElementById("lockMessage");
+  const content = document.getElementById("protectedContent");
+
+  if(user){
+    console.log("LOGGED IN ✅");
+
+    // NAVBAR
+    if(loginBtn) loginBtn.style.display="none";
+    if(joinBtn) joinBtn.style.display="none";
+    if(dashboardLink) dashboardLink.style.display="block";
+    if(logoutBtn) logoutBtn.style.display="block";
+
+    // LOCK (optional, harmless if not used)
+    if(lock) lock.style.display="none";
+    if(content) content.style.display="block";
+
+  } else {
+    console.log("NOT LOGGED ❌");
+
+    // NAVBAR
+    if(loginBtn) loginBtn.style.display="block";
+    if(joinBtn) joinBtn.style.display="block";
+    if(dashboardLink) dashboardLink.style.display="none";
+    if(logoutBtn) logoutBtn.style.display="none";
+
+    // LOCK
+    if(lock) lock.style.display="block";
+    if(content) content.style.display="none";
+  }
+
+});
+
+// 🔥 LOGOUT FIX (ONLY ONE TIME)
+const logoutBtn = document.getElementById("logoutBtn");
+
+if(logoutBtn){
+  logoutBtn.onclick = async ()=>{
+    await signOut(auth);
+    location.reload();
+  };
+}
+
+// 🔥 POPUP FIX (p undefined bug fix)
+function openPopup(project){
+  const modal = document.getElementById("projectModal");
+
+  modal.innerHTML = `
+  <div class="modal-box">
+
+    <h2>${project.name}</h2>
+    <p>${project.desc}</p>
+
+    <div class="project-info">
+      <p><b>Difficulty:</b> ${project.difficulty}</p>
+      <p><b>Time:</b> ${project.time}</p>
+      <p><b>Rewards:</b> ${project.reward}</p>
+    </div>
+
+    <button class="open" onclick="window.open('${project.link}')">
+      Open Project
+    </button>
+
+  </div>
+  `;
+}
+
+</script>
+
+<script>
+function addToDashboard(project, btn){
+
+  let projects = JSON.parse(localStorage.getItem("elyra_projects")) || [];
+
+  if(projects.some(p => p.id === project.id)){
+    btn.innerText = "Added ✔";
+    btn.disabled = true;
+    return;
+  }
+
+  projects.push(project);
+
+  localStorage.setItem("elyra_projects", JSON.stringify(projects));
+
+  btn.innerText = "Added ✔";
+  btn.disabled = true;
+}
+</script>
+
+</body>
+</html>

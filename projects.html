@@ -1,0 +1,292 @@
+<!DOCTYPE 
+< lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Elyra</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Nunito&display=swap" rel="stylesheet">
+
+<style>
+
+/* BODY */
+body{
+  margin:0;
+  font-family:'Nunito';
+  background: radial-gradient(circle at 20% 20%, #0a0a0a, #000);
+  color:white;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  margin-top:100px;
+}
+.hero h1{
+  font-family:'Orbitron';
+  font-size:42px;
+  background:linear-gradient(90deg,#8a2be2,#ff00cc);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* SECTION */
+.section-title{
+  margin:40px 6% 10px;
+  font-family:'Orbitron';
+  color:#00ffc8;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  padding:20px 6%;
+}
+
+/* CARD */
+.project-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid #222;
+  padding:20px;
+  border-radius:16px;
+  transition:0.3s;
+}
+.project-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 25px rgba(0,255,200,0.3);
+}
+.project-card h3{
+  font-family:'Orbitron';
+}
+.project-card p{
+  color:#bbb;
+  font-size:14px;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  padding:10px;
+  border-radius:25px;
+  border:none;
+  margin-top:10px;
+  cursor:pointer;
+}
+.view-btn{
+  background:#222;
+  color:white;
+}
+.add-btn{
+  background:linear-gradient(90deg,#8a2be2,#00ffc8);
+  color:black;
+  font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <a href="index.html" class="logo-wrap">
+    <img src="assets/images/elyra-logo.png" class="logo-img">
+    <span class="logo-text">ELYRA</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="founders.html">Founders</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+
+    <li class="dropdown">
+      <a href="#">Skill Arenas ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="helix-lab.html">Helix Lab</a></li>
+        <li><a href="nexus-forge.html">Nexus Forge</a></li>
+        <li><a href="appocalypse.html">Appocalypse</a></li>
+        <li><a href="aether-arena.html">Aether Arena</a></li>
+      </ul>
+    </li>
+
+    <!-- AFTER LOGIN -->
+    <li id="dashboardLink" style="display:none;">
+      <a href="dashboard.html">Dashboard</a>
+    </li>
+
+    <!-- BEFORE LOGIN -->
+    <li id="joinBtn"><a href="join.html" class="btn-secondary">Join</a></li>
+    <li id="loginBtn"><a href="login.html" class="btn-primary">Login</a></li>
+
+    <!-- LOGOUT -->
+    <li id="logoutBtn" style="display:none;">
+      <a href="#">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+
+<div class="hero">
+<h1>Projects</h1>
+</div>
+
+<!-- ================= GAME DEV ================= -->
+<h2 class="section-title">🎮 Game Development</h2>
+<div class="grid">
+
+<div class="project-card">
+<h3>Sprig</h3>
+<p>Build pixel games using JavaScript.</p>
+<p>Beginner • 2–7 Days • Console</p>
+<a href="https://sprig.hackclub.com" target="_blank"><button class="btn view-btn">View</button></a>
+<button class="btn add-btn" onclick="addToDashboard({id:'sprig',name:'Sprig',desc:'Pixel JS games',difficulty:'Beginner',time:'2–7 Days',reward:'Console',link:'https://sprig.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Hack Club Game</h3>
+<p>Interactive game development.</p>
+<p>Intermediate • 3–10 Days • Swag</p>
+<a href="https://game.hackclub.com" target="_blank"><button class="btn view-btn">View</button></a>
+<button class="btn add-btn" onclick="addToDashboard({id:'game',name:'Hack Club Game',desc:'Game dev',difficulty:'Intermediate',time:'3–10 Days',reward:'Swag',link:'https://game.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Macondo</h3>
+<p>Creative coding games.</p>
+<button class="btn add-btn" onclick="addToDashboard({id:'macondo-game',name:'Macondo Game',desc:'Creative games',difficulty:'Intermediate',time:'1–3 Weeks',reward:'Rewards',link:'https://macondo.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Horizons</h3>
+<p>Large-scale game project.</p>
+<button class="btn add-btn" onclick="addToDashboard({id:'horizons-game',name:'Horizons Game',desc:'Large game',difficulty:'Advanced',time:'1–3 Months',reward:'Grants',link:'https://horizons.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Aces</h3>
+<p>Fast prototype games.</p>
+<button class="btn add-btn" onclick="addToDashboard({id:'aces',name:'Aces',desc:'Fast builds',difficulty:'Intermediate',time:'1–2 Days',reward:'Swag',link:'https://aces.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Milky Way</h3>
+<p>Creative game showcase.</p>
+<button class="btn add-btn" onclick="addToDashboard({id:'milky',name:'Milky Way',desc:'Creative games',difficulty:'Intermediate',time:'1–2 Weeks',reward:'Spotlight',link:'https://milkyway.hackclub.com'})">Add</button>
+</div>
+
+</div>
+
+<!-- ================= APP DEV ================= -->
+<h2 class="section-title">📱 App Development</h2>
+<div class="grid">
+
+<div class="project-card">
+<h3>Hack Club Game (App)</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'app-game',name:'Hack Club Game App',desc:'App dev',difficulty:'Intermediate',time:'3–10 Days',reward:'Swag',link:'https://game.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Macondo (App)</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'app-macondo',name:'Macondo App',desc:'Creative apps',difficulty:'Intermediate',time:'1–3 Weeks',reward:'Rewards',link:'https://macondo.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Horizons (App)</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'app-horizons',name:'Horizons App',desc:'Large apps',difficulty:'Advanced',time:'1–3 Months',reward:'Grants',link:'https://horizons.hackclub.com'})">Add</button>
+</div>
+
+</div>
+
+<!-- ================= HARDWARE ================= -->
+<h2 class="section-title">⚙️ Hardware</h2>
+<div class="grid">
+
+<div class="project-card">
+<h3>Blinky Board</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'blinky',name:'Blinky Board',desc:'PCB build',difficulty:'Beginner',time:'1–2 hrs',reward:'PCB',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>RP2040 Devboard</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'rp2040',name:'RP2040 Devboard',desc:'Custom board',difficulty:'Intermediate',time:'6–10 hrs',reward:'PCB',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Flight Controller</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'flight',name:'Flight Controller',desc:'Drone board',difficulty:'Advanced',time:'10–15 hrs',reward:'Controller',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Mini Midi Magic</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'midi',name:'Mini Midi Magic',desc:'Keyboard',difficulty:'Intermediate',time:'8–10 hrs',reward:'Keyboard',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Split Keyboard</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'split',name:'Split Keyboard',desc:'Keyboard',difficulty:'Intermediate',time:'7–9 hrs',reward:'Keyboard',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Custom Mouse</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'mouse',name:'Custom Mouse',desc:'Mouse',difficulty:'Intermediate',time:'8–10 hrs',reward:'Mouse',link:'https://blueprint.hackclub.com'})">Add</button>
+</div>
+
+</div>
+
+<!-- ================= WEB DEV ================= -->
+<h2 class="section-title">🌐 Web Development</h2>
+<div class="grid">
+
+<div class="project-card">
+<h3>Vibes</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'vibes',name:'Vibes',desc:'AI web',difficulty:'Beginner',time:'1–2 hrs',reward:'Pizza',link:'https://vibes.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Boba Drops</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'boba',name:'Boba Drops',desc:'HTML site',difficulty:'Beginner',time:'2–3 hrs',reward:'Boba',link:'https://boba.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Swirl</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'swirl',name:'Swirl',desc:'Website',difficulty:'Beginner',time:'2–3 hrs',reward:'Ice cream',link:'https://swirl.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Horizons (Web)</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'web-horizons',name:'Horizons Web',desc:'Advanced site',difficulty:'Advanced',time:'Custom',reward:'Grants',link:'https://horizons.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Macondo (Web)</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'web-macondo',name:'Macondo Web',desc:'Creative site',difficulty:'Intermediate',time:'Custom',reward:'Anything',link:'https://macondo.hackclub.com'})">Add</button>
+</div>
+
+<div class="project-card">
+<h3>Waffles</h3>
+<button class="btn add-btn" onclick="addToDashboard({id:'waffles',name:'Waffles',desc:'JS site',difficulty:'Intermediate',time:'3–4 hrs',reward:'Waffles',link:'https://waffles.hackclub.com'})">Add</button>
+</div>
+
+</div>
+
+<script>
+function addToDashboard(project){
+let data = JSON.parse(localStorage.getItem("elyraProjects")) || [];
+if(data.find(p=>p.id===project.id)){
+alert("Already Added");
+return;
+}
+data.push(project);
+localStorage.setItem("elyraProjects",JSON.stringify(data));
+alert("Added 🚀");
+}
+</script>
+
+</body>
+</>
