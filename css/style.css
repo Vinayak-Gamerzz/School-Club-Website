@@ -26,12 +26,40 @@ body {
   border-bottom: 1px solid #222;
 }
 
-/* LOGO */
-.logo {
+/* IMPORT FONT (TOP ME DAAL) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* LOGO IMAGE FIX */
+.logo-img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+
+  filter: drop-shadow(0 0 8px rgba(0,150,255,0.6));
+}
+
+/* TEXT (NEW PREMIUM FONT) */
+.logo-text{
   font-family: 'Orbitron', sans-serif;
-  font-size: 20px;
-  color: #8a2be2;
-  text-decoration: none;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:1px;
+
+  background: linear-gradient(90deg,#00ffc8,#00aaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* HOVER */
+.logo:hover{
+  transform: scale(1.05);
+  transition: 0.3s;
 }
 
 /* NAV LINKS */
